@@ -12,40 +12,48 @@ namespace EightPuzzleConsole
     {
         private static void Main(string[] args)
         {
-            do
+            try
             {
-                var goal = new EightPuzzleNode { Tiles = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 0 } };
-                var start = new EightPuzzleNode { Tiles = new int[9] };
-
-                Console.WriteLine("Enter a valid start state (e.g. 867254301");
-                string userinput = Console.ReadLine();
-
-
-                if (userinput != null)
+                do
                 {
-                    int i = 0;
+                    var goal = new EightPuzzleNode {Tiles = new[] {1, 2, 3, 4, 5, 6, 7, 8, 0}};
+                    var start = new EightPuzzleNode {Tiles = new int[9]};
 
-                    foreach (char s in userinput)
+                    Console.WriteLine("Enter a valid start state (e.g. 86725431)");
+                    string userinput = Console.ReadLine();
+
+
+                    if (userinput != null)
                     {
-                        int tile;
+                        int i = 0;
+
+                        foreach (char s in userinput)
+                        {
+                            int tile;
 
 
-                        if (!int.TryParse(s.ToString(), out tile)) continue;
+                            if (!int.TryParse(s.ToString(), out tile)) continue;
 
-                        start.Tiles[i++] = tile; 
+                            start.Tiles[i++] = tile;
+                        }
+
+                        var pathFinder = new PathFinder(
+                            new EightPuzzleSuccessorNodesGenerator(),
+                            new EightPuzzleGValueCalculator(),
+                            new EightPuzzleManhattanDistanceCalulator());
+
+                        INode result = pathFinder.Execute(start, goal);
+                        PrintSolution(result);
+
+                        Console.ReadKey();
                     }
-
-                    var pathFinder = new PathFinder(
-                        new EightPuzzleSuccessorNodesGenerator(),
-                        new EightPuzzleGValueCalculator(),
-                        new EightPuzzleManhattanDistanceCalulator());
-
-                    INode result = pathFinder.Execute(start, goal);
-                    PrintSolution(result);
-
-                    Console.ReadKey();
-                }
-            } while (Console.ReadLine() != "exit");
+                } while (Console.ReadLine() != "exit");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+            }
         }
 
         private static void PrintSolution(INode node)

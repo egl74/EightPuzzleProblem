@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,10 +10,12 @@ namespace EightPuzzleGame.SuccessorNodes
 
         public IEnumerable<INode> Execute(INode currentNode)
         {
-            var node = currentNode as EightPuzzleNode;
+            try
+            {
+                var node = currentNode as EightPuzzleNode;
 
-            var successorRules =
-                new List<ISuccessorNodesCalculationRule>
+                var successorRules =
+                    new List<ISuccessorNodesCalculationRule>
                     {
                         new EightPuzzleSuccessorsForEmptyTileZero(),
                         new EightPuzzleSuccessorsForEmptyTileOne(),
@@ -25,9 +28,17 @@ namespace EightPuzzleGame.SuccessorNodes
                         new EightPuzzleSuccessorsForEmptyTileEight()
                     };
 
-            return successorRules
-                .Single(r => r.Match(node))
-                .GetSuccessors(node);
+                return successorRules
+                    .Single(r => r.Match(node))
+                    .GetSuccessors(node);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                return null;
+            }
+
         }
 
         #endregion
