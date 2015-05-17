@@ -56,5 +56,24 @@ namespace EightPuzzleGame
 
             return emptyTilePos;
         }
+
+        private int NumberOfInversions
+        {
+            get
+            {
+                var invCount = 0;
+                for (var i = 0; i < 9 - 1; i++)
+                    for (var j = i + 1; j < 9; j++)
+                        // Value 0 is used for empty space
+                        if (Tiles[i] != 0 && Tiles[j] != 0 && (Tiles[i] > Tiles[j]))
+                            invCount++;
+                return invCount;
+            }
+        }
+
+        public bool IsSolvable
+        {
+            get { return NumberOfInversions%2 == 0; }
+        }
     }
 }

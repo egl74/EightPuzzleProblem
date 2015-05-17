@@ -35,29 +35,16 @@ namespace EightPuzzleConsole
         {
             try
             {
+                for (var i = 0; i <= 8; i++)
+                {
+                    if (start.Tiles.Contains(i)) continue;
+                    throw new Exception("Fields filled improperly");
+                }
+                if (!start.IsSolvable)
+                    throw new Exception("Puzzle is unsolvable");
                 dataGridView1.ClearSelection();
-                //do
-                //{
+                
                 var goal = new EightPuzzleNode {Tiles = new[] {1, 2, 3, 4, 5, 6, 7, 8, 0}};
-                //var start = new EightPuzzleNode {Tiles = new int[9]};
-
-                //Console.WriteLine("Enter a valid start state (e.g. 867254031) - numbers '1'-'8' + marker '0'");
-                //string userinput = Console.ReadLine();
-
-
-                //if (userinput != null)
-                //{
-                //int i = 0;
-
-                //foreach (char s in userinput)
-                //{
-                //    int tile;
-
-
-                //    if (!int.TryParse(s.ToString(), out tile)) continue;
-
-                //    start.Tiles[i++] = tile;
-                //}
 
                 var pathFinder = new PathFinder(
                     new EightPuzzleSuccessorNodesGenerator(),
@@ -66,10 +53,6 @@ namespace EightPuzzleConsole
 
                 INode result = pathFinder.Execute(start, goal);
                 PrintSolution(result, dataGridView1);
-
-                // Console.ReadKey();
-                //}
-                //} while (Console.ReadLine() != "exit");
             }
             catch (Exception e)
             {
