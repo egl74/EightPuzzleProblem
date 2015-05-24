@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using EightPuzzleGame;
@@ -77,7 +76,6 @@ namespace EightPuzzleConsole
 
                 foreach (EightPuzzleNode solutionNode in stack)
                 {
-
                     dg.EditMode = DataGridViewEditMode.EditProgrammatically;
                     
                     string tiles = solutionNode.Tiles
@@ -85,9 +83,8 @@ namespace EightPuzzleConsole
 
                     for (var i = 0; i < 9; i++)
                     {
-                        
-                        var col = (i)%3;
-                        var row = (i)/3;
+                        var col = i % 3;
+                        var row = i / 3;
                         dg.BeginEdit(true);
                         dg.NotifyCurrentCellDirty(false);
                         dg[col, row].Value = tiles[i] != '0' ? (object) (int) Char.GetNumericValue(tiles[i]) : null;
@@ -105,7 +102,6 @@ namespace EightPuzzleConsole
             {
                 MessageBox.Show("No solution");
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)

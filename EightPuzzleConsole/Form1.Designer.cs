@@ -90,6 +90,8 @@ namespace EightPuzzleConsole
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Old English Text MT", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
             this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column1.Frozen = true;
             this.Column1.HeaderText = "Column1";
@@ -101,6 +103,8 @@ namespace EightPuzzleConsole
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Old English Text MT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.Frozen = true;
             this.Column2.HeaderText = "Column2";
@@ -112,6 +116,8 @@ namespace EightPuzzleConsole
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Old English Text MT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
             this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column3.Frozen = true;
             this.Column3.HeaderText = "Column3";
